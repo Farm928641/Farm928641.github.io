@@ -2,3 +2,13 @@
 /*Testing Frederick*/
 /*Test Again for Master.css*/
 /*test times*/
+body {
+    text-align: center;
+}
+
+#screen {
+    background-color: #f1f1f1;
+    width: 550px;
+    height: 800px;
+    margin-top: 20px;
+}
