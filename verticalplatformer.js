@@ -8,6 +8,14 @@ window.onload = function() {
     board.height = boardHeight;
     board.width = boardWidth;
     context = board.getContext("2d");
+
+    //draw player
+    context.fillStyle = "green";
+    context.fillRect(player.x, player.y, player.width, player.height);
+
+    //load player images
+
+
 }
 
 //player
@@ -24,6 +32,3 @@ let player = {
     height : playerHeight,
 }
 
-//draw player
-context.fillStyle = "green";
-context.fillRect(player.x, player.y, player.width, player.height);
