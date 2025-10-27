@@ -10,4 +10,16 @@ window.onload = function() {
     context = board.getContext("2d");
 }
 
-//character
+//player
+let playerWidth = 46;
+let playerHeight = 46;
+let playerX = boardWidth / 2 - playerWidth / 2;
+let playerY = boardHeight*7/8 - playerHeight;
+
+let player = {
+    img: null,
+    x : playerX,
+    y : playerY,
+    width : playerWidth,
+    height : playerHeight,
+}
