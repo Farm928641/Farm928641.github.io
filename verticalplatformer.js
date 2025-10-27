@@ -23,3 +23,7 @@ let player = {
     width : playerWidth,
     height : playerHeight,
 }
+
+//draw player
+context.fillStyle = "green";
+context.fillRect(player.x, player.y, player.width, player.height);
