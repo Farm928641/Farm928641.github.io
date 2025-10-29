@@ -40,6 +40,8 @@ let player = {
 
 function update() {
     requestAnimationFrame(update);
+    context.clearRect(0, 0, board.width, board.height); // Clears the canvas before drawing next frame
+
 
     player.x += velocityX; // Updates the player's position if they are moving
 
