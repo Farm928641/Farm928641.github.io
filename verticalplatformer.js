@@ -16,6 +16,9 @@ window.onload = function() {
     //load player images
 
 
+
+    this.requestAnimationFrame(update); 
+    this.addEventListener("keydown", movePlayer); //Listens for a key press that moves the player 
 }
 
 //player
@@ -35,3 +38,21 @@ let player = {
     height : playerHeight,
 }
 
+function update() {
+    requestAnimationFrame(update);
+
+    player.x += velocityX; // Updates the player's position if they are moving
+
+    // Draw the player (currently a cube) over and over agin
+    context.fillStyle = "green";
+    context.fillRect(player.x, player.y, player.width, player.height);
+}
+
+function movePlayer(e) {
+    if (e.code == "KeyD" || e.code == "ArrowRight") { // If Player presses right buttons
+        velocityX = 4; // Note: this is 4 pixels per FRAME
+    }
+    else if (e.code == "KeyA" || e.code == "ArrowLeft") { // If Player presses left buttons
+        velocityX = -4;
+    }
+}
