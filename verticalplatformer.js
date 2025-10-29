@@ -24,6 +24,9 @@ let playerHeight = 46;
 let playerX = boardWidth / 2 - playerWidth / 2;
 let playerY = boardHeight*7/8 - playerHeight;
 
+// Physics
+let velocityX = 0; 
+
 let player = {
     img: null,
     x : playerX,
