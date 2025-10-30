@@ -15,15 +15,10 @@ window.onload = function() {
 
     //load player images
 
-<<<<<<< Updated upstream
 
 
     this.requestAnimationFrame(update); 
     this.addEventListener("keydown", movePlayer); //Listens for a key press that moves the player 
-=======
-    //create game loop
-    requestAnimationFrame(update);
->>>>>>> Stashed changes
 }
 
 function update(){
