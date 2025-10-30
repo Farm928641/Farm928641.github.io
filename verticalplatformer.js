@@ -21,13 +21,6 @@ window.onload = function() {
     this.addEventListener("keydown", movePlayer); //Listens for a key press that moves the player 
 }
 
-function update(){
-    requestAnimationFrame(update);
-    
-    
-}
-
-
 
 //player
 let playerWidth = 46;
