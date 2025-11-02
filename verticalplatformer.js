@@ -8,13 +8,17 @@ window.onload = function() {
     board.height = boardHeight;
     board.width = boardWidth;
     context = board.getContext("2d");
-
-    //draw player
-    context.fillStyle = "green";
-    context.fillRect(player.x, player.y, player.width, player.height);
+    
 
     //load player images
+    playerRightImg = new Image();
+    playerRightImg.src = "./images/debug_player.png"
+    player.img = playerRightImg;
 
+    // draw player
+    playerRightImg.onload = function() {
+        context.drawImage(player.img, player.x, player.y, player.width, player.height);
+    }
 
 
     this.requestAnimationFrame(update); 
@@ -27,6 +31,7 @@ let playerWidth = 46;
 let playerHeight = 46;
 let playerX = boardWidth / 2 - playerWidth / 2;
 let playerY = boardHeight*7/8 - playerHeight;
+let playerRightImg;
 
 // Physics
 let velocityX = 0; 
@@ -53,9 +58,8 @@ function update() {
         player.x = boardWidth;
     }
 
-    // Draw the player (currently a cube) over and over agin
-    context.fillStyle = "green";
-    context.fillRect(player.x, player.y, player.width, player.height);
+    // Draw the player (currently glep smiling friends) over and over again
+    context.drawImage(player.img, player.x, player.y, player.width, player.height);
 }
 
 function movePlayer(e) {
