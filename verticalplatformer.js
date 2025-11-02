@@ -46,6 +46,13 @@ function update() {
 
     player.x += velocityX; // Updates the player's position if they are moving
 
+    // This teleports the player to the opposite side when they go off screen
+    if (player.x > boardWidth) {
+        player.x = 0;
+    } else if (player.x + player.width < 0) {
+        player.x = boardWidth;
+    }
+
     // Draw the player (currently a cube) over and over agin
     context.fillStyle = "green";
     context.fillRect(player.x, player.y, player.width, player.height);
