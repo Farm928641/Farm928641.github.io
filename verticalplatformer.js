@@ -22,7 +22,8 @@ window.onload = function() {
 
 
     this.requestAnimationFrame(update); 
-    this.addEventListener("keydown", movePlayer); //Listens for a key press that moves the player 
+    this.addEventListener("keydown", movePlayer); //Listens for a key press that moves the player
+    this.addEventListener("keyup", stopPlayer); // Listens for the keys to be unpressed that will stop player
 }
 
 
@@ -68,5 +69,12 @@ function movePlayer(e) {
     }
     else if (e.code == "KeyA" || e.code == "ArrowLeft") { // If Player presses left buttons
         velocityX = -4;
+    }
+}
+
+function stopPlayer(e) {
+    if (e.code == "KeyD" || e.code == "ArrowRight" ||
+        e.code == "KeyA" || e.code == "ArrowLeft") { // If Player unpresses move buttons
+        velocityX = 0; // reset velocity
     }
 }
