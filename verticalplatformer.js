@@ -3,6 +3,10 @@ let boardWidth = 360;
 let boardHeight = 576;
 let context;
 
+
+// Sounds
+const debugSound = new Audio("./sounds/debug.wav");
+
 window.onload = function() {
     board = this.document.getElementById("board");
     board.height = boardHeight;
@@ -69,6 +73,12 @@ function movePlayer(e) {
     }
     else if (e.code == "KeyA" || e.code == "ArrowLeft") { // If Player presses left buttons
         velocityX = -4;
+    }
+
+    // play sound when spacebar pressed for testing purposes
+    if (e.code === "Space") {
+        debugSound.currentTime = 0; // rewind to start if held repeatedly
+        debugSound.play();
     }
 }
 
