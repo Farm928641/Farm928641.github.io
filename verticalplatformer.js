@@ -3,6 +3,7 @@ let boardWidth = 360;
 let boardHeight = 576;
 let context;
 
+let keys = {}; // This is used to track which keys are being pressed
 
 // Sounds
 const debugSound = new Audio("./sounds/debug.wav");
@@ -67,11 +68,14 @@ function update() {
     context.drawImage(player.img, player.x, player.y, player.width, player.height);
 }
 
+// Player Movement Logic
 function movePlayer(e) {
-    if (e.code == "KeyD" || e.code == "ArrowRight") { // If Player presses right buttons
+    keys[e.code] = true; // marks that this key was pressed
+
+    if (keys["KeyD"] || keys["ArrowRight"]) { // If Player presses right buttons
         velocityX = 4; // Note: this is 4 pixels per FRAME
     }
-    else if (e.code == "KeyA" || e.code == "ArrowLeft") { // If Player presses left buttons
+    else if (keys["KeyA"] || keys["ArrowLeft"]) { // If Player presses left buttons
         velocityX = -4;
     }
 
@@ -82,9 +86,16 @@ function movePlayer(e) {
     }
 }
 
+
 function stopPlayer(e) {
-    if (e.code == "KeyD" || e.code == "ArrowRight" ||
-        e.code == "KeyA" || e.code == "ArrowLeft") { // If Player unpresses move buttons
-        velocityX = 0; // reset velocity
+    keys[e.code] = false; // mark that this key was released
+
+    // check if the opposite movement key is still pressed
+    if (keys["KeyD"] || keys["ArrowRight"]) {
+        velocityX = 4;
+    } else if (keys["KeyA"] || keys["ArrowLeft"]) {
+        velocityX = -4;
+    } else {
+        velocityX = 0; // only stop if neither is pressed
     }
 }
