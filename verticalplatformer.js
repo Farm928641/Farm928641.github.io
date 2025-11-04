@@ -33,6 +33,8 @@ window.onload = function() {
     // Draw Platforms
     placePlatforms();
 
+    velocityY = initialVelocityY; // Sets player's velocity to starting velo
+
     this.requestAnimationFrame(update); 
     this.addEventListener("keydown", movePlayer); //Listens for a key press that moves the player
     this.addEventListener("keyup", stopPlayer); // Listens for the keys to be unpressed that will stop player
@@ -83,6 +85,9 @@ function update() {
     } else if (player.x + player.width < 0) {
         player.x = boardWidth;
     }
+
+    player.y += velocityY; // Adds the current Y-Velocity to the player's Y coordinates
+    velocityY += gravity; // Adding the gravity factor stops him from flying away
 
     // Draw the player (currently glep smiling friends) over and over again
     context.drawImage(player.img, player.x, player.y, player.width, player.height);
