@@ -8,6 +8,9 @@ let keys = {}; // This is used to track which keys are being pressed
 // Sounds
 const debugSound = new Audio("./sounds/debug.wav");
 
+// VERY IMPORTANT TIME VARIABLE
+let last = performance.now();
+
 // ------------ Game Logic -----------------
 window.onload = function() {
     board = this.document.getElementById("board");
@@ -73,11 +76,16 @@ let platformImg;
 
 // -------- Functions -----------
 function update() {
+
+    const now = performance.now();
+    const delta = (now - last) / (1000/60); // normalized to ~60fps
+    last = now;
+
     requestAnimationFrame(update);
     context.clearRect(0, 0, board.width, board.height); // Clears the canvas before drawing next frame
 
 
-    player.x += velocityX; // Updates the player's position if they are moving
+    player.x += velocityX * delta; // Updates the player's position if they are moving
 
     // This teleports the player to the opposite side when they go off screen
     if (player.x > boardWidth) {
@@ -86,8 +94,8 @@ function update() {
         player.x = boardWidth;
     }
 
-    player.y += velocityY; // Adds the current Y-Velocity to the player's Y coordinates
-    velocityY += gravity; // Adding the gravity factor stops him from flying away
+    player.y += velocityY * delta; // Adds the current Y-Velocity to the player's Y coordinates
+    velocityY += gravity * delta; // Adding the gravity factor stops him from flying away
 
     // Draw the player (currently glep smiling friends) over and over again
     context.drawImage(player.img, player.x, player.y, player.width, player.height);
@@ -106,10 +114,10 @@ function movePlayer(e) {
     keys[e.code] = true; // marks that this key was pressed
 
     if (keys["KeyD"] || keys["ArrowRight"]) { // If Player presses right buttons
-        velocityX = 4; // Note: this is 4 pixels per FRAME
+        velocityX = 8; // Note: this is 4 pixels per FRAME
     }
     else if (keys["KeyA"] || keys["ArrowLeft"]) { // If Player presses left buttons
-        velocityX = -4;
+        velocityX = -8;
     }
 
     // play sound when spacebar pressed for testing purposes
@@ -125,9 +133,9 @@ function stopPlayer(e) {
 
     // check if the opposite movement key is still pressed
     if (keys["KeyD"] || keys["ArrowRight"]) {
-        velocityX = 4;
+        velocityX = 8;
     } else if (keys["KeyA"] || keys["ArrowLeft"]) {
-        velocityX = -4;
+        velocityX = -8;
     } else {
         velocityX = 0; // only stop if neither is pressed
     }
