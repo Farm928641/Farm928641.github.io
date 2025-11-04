@@ -101,9 +101,13 @@ function update() {
     context.drawImage(player.img, player.x, player.y, player.width, player.height);
 
 
-    // Draw platforms
+    // platforms
     for (i = 0; i < platformArray.length; i++) {
         let currentPlatform = platformArray[i];
+        if (detectCollisions(player, currentPlatform)) {
+            velocityY = initialVelocityY //jump
+        }
+
         context.drawImage(currentPlatform.img, currentPlatform.x, currentPlatform.y,
             currentPlatform.width, currentPlatform.height);
     }
@@ -157,3 +161,12 @@ function placePlatforms() {
 
     platformArray.push(platform); //Adds the starting platform to the array
 }
+
+
+// Collision formula for detecting the intersection between two rectangles
+function detectCollisions(a, b) {
+    return a.x < b.x + b.width && //a's top left corner doesnt reach b's top right corner
+         a.x + a.width > b.width && //a's top right corner passes b's top left corner
+         a.y < b.y + b.height && //a's top left corner doesnt reach b's bottom left corner
+         a.y + a.height > b.y; //a's bottom left corner passes b's top left corner
+}       
