@@ -48,7 +48,10 @@ let playerY = boardHeight*7/8 - playerHeight;
 let playerRightImg;
 
 // Physics
-let velocityX = 0; 
+let velocityX = 0;
+let velocityY = 0; // Player jump speed
+let initialVelocityY = -8; // Player's starting velocity
+let gravity = 0.4; // Gravity strength
 
 let player = {
     img: null,
