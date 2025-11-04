@@ -28,7 +28,7 @@ window.onload = function() {
 
     // Load Platform Images
     platformImg = new Image();
-    platformImg.src = "./images/debug_player.png"; //because we dont have platform art yet im just using the debug player
+    platformImg.src = "./images/debug_platform.png"; //uses the debug image for the platform
 
     // Draw Platforms
     placePlatforms();
