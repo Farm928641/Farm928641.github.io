@@ -116,10 +116,16 @@ function update() {
         let currentPlatform = platformArray[i];
         currentPlatform.y += scrollSpeed; // apply scrolling to platforms
 
-        // Only check collisions when falling
-        if (velocityY > 0 && detectCollisions(player, currentPlatform)) {
-            player.y = currentPlatform.y - player.height;
-            velocityY = initialVelocityY; // bounce up
+        // Only check collisions when falling directly onto a platform - this is different than check collisions
+        if (
+            velocityY > 0 &&
+            player.y + player.height <= currentPlatform.y + velocityY * delta && // player was above last frame
+            player.y + player.height >= currentPlatform.y &&                      // now intersecting top
+            player.x + player.width > currentPlatform.x + 5 &&                    // avoid edge bounces
+            player.x < currentPlatform.x + currentPlatform.width - 5
+        ) {
+            player.y = currentPlatform.y - player.height; // gently align
+            velocityY = initialVelocityY; // bounce
         }
 
         context.drawImage(currentPlatform.img, currentPlatform.x, currentPlatform.y,
