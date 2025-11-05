@@ -131,6 +131,12 @@ function update() {
         platformArray.shift(); // Remove the first platform element from the array
         newPlatform();
     }
+
+    // Score
+    updateScore();
+    context.fillStyle = "white";
+    context.font = "16px sans-serif";
+    context.fillText(score, 5, 20);
 }
 
 // Player Movement Logic
