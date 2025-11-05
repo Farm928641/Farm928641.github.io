@@ -104,6 +104,10 @@ function update() {
     // platforms
     for (i = 0; i < platformArray.length; i++) {
         let currentPlatform = platformArray[i];
+        if (velocityY < 0 && player.y < boardHeight*3/4) {
+            currentPlatform.y -= initialVelocityY //Slide platforms down
+        }
+
         if (detectCollisions(player, currentPlatform)) {
             velocityY = initialVelocityY //jump
         }
