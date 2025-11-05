@@ -100,8 +100,6 @@ function update() {
     player.y += velocityY * delta; // Adds the current Y-Velocity to the player's Y coordinates
     velocityY += gravity * delta; // Adding the gravity factor stops him from flying away
 
-    // Draw the player (currently glep smiling friends) over and over again
-    context.drawImage(player.img, player.x, player.y, player.width, player.height);
 
 
     // Determine if we need to scroll the world (player moving up)
@@ -131,6 +129,9 @@ function update() {
         context.drawImage(currentPlatform.img, currentPlatform.x, currentPlatform.y,
             currentPlatform.width, currentPlatform.height);
     }
+
+    // Draw the player (currently glep smiling friends) over and over again
+    context.drawImage(player.img, player.x, player.y, player.width, player.height);
 
     // Remove Platform and add new one
     while (platformArray.length > 0 && platformArray[0].y >= boardHeight) { // When platform goes off screen
