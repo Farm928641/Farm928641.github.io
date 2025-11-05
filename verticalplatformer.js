@@ -160,6 +160,20 @@ function placePlatforms() {
     }
 
     platformArray.push(platform); //Adds the starting platform to the array
+
+    for (let i = 0; i < 6; i++) { // Generates six platforms
+        let randomX = Math.floor(Math.random() * boardWidth * 3/4); // Creates random x-position
+        let platform = {
+        img : platformImg,
+        width : platformWidth,
+        height : platformHeight,
+        x : randomX,
+        y : boardHeight - 75 * i - 150 // Creates 75 pixels of space between each platform
+    }
+
+    platformArray.push(platform);
+    
+    }
 }
 
 
