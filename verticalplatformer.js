@@ -115,6 +115,12 @@ function update() {
         context.drawImage(currentPlatform.img, currentPlatform.x, currentPlatform.y,
             currentPlatform.width, currentPlatform.height);
     }
+
+    // Remove Platform and add new one
+    while (platformArray.length > 0 && platformArray[0].y >= boardHeight) { // When platform goes off screen
+        platformArray.shift(); // Remove the first platform element from the array
+        newPlatform();
+    }
 }
 
 // Player Movement Logic
