@@ -4,20 +4,27 @@
 /*test times*/
 body {
     text-align: center;
-    background-image: url("./images/Spaceman_Background.png");
-    background-size: cover;
-    background-repeat: no-repeat;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 #board {
-    /* background-color: #f1f1f1; */
     width: 550px;
     height: 800px;
-    /* margin-top: 20px; */
     background-image: url("./images/space.png");
+    margin: 30px;
 }
 
-#container {
-    margin: 0 auto;
-
+#background {
+    background-image: url("./images/Spaceman_Background.png");
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
+    position: fixed;
+    top: 0;
+    z-index: -1;
 }
