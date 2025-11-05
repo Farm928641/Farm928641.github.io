@@ -4,6 +4,9 @@
 /*test times*/
 body {
     text-align: center;
+    background-image: url("./images/Spaceman_Background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 #board {
@@ -12,4 +15,9 @@ body {
     height: 800px;
     /* margin-top: 20px; */
     background-image: url("./images/space.png");
+}
+
+#container {
+    margin: 0 auto;
+
 }
