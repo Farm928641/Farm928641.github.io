@@ -73,6 +73,9 @@ let platformHeight = 18;
 let platformImg;
 
 
+let score = 0;
+let maxScore = 0;
+
 
 // -------- Functions -----------
 function update() {
@@ -213,4 +216,16 @@ function detectCollisions(a, b) {
          a.x + a.width > b.x && //a's top right corner passes b's top left corner
          a.y < b.y + b.height && //a's top left corner doesnt reach b's bottom left corner
          a.y + a.height > b.y; //a's bottom left corner passes b's top left corner
-}       
+}
+
+function updateScore() {
+    let points = Math.floor(50 * Math.random()) // Random Number from 0 - 50
+    if (velocityY < 0) { // Going Up
+        maxScore += points;
+        if (score < maxScore) {
+            score = maxScore; 
+        }
+    } else if (velocityY >= 0) { //Stand still or going down
+        maxScore -= points;
+    }
+}
