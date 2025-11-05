@@ -176,6 +176,19 @@ function placePlatforms() {
     }
 }
 
+function newPlatform() {
+        let randomX = Math.floor(Math.random() * boardWidth * 3/4); // Creates random x-position
+        let platform = {
+        img : platformImg,
+        width : platformWidth,
+        height : platformHeight,
+        x : randomX,
+        y : -platformHeight // Creates the platform at the top of the canvas so it can slide down
+    }
+
+    platformArray.push(platform);
+}
+
 
 // Collision formula for detecting the intersection between two rectangles
 function detectCollisions(a, b) {
