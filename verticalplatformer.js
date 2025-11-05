@@ -101,17 +101,24 @@ function update() {
     context.drawImage(player.img, player.x, player.y, player.width, player.height);
 
 
-    // platforms
-    for (i = 0; i < platformArray.length; i++) {
+    // Determine if we need to scroll the world (player moving up)
+    let scrollSpeed = 0;
+    if (velocityY < 0 && player.y < boardHeight * 5/8) {
+        scrollSpeed = -velocityY * delta; // slide the world down based on player’s upward speed
+        player.y += scrollSpeed;          // keep player visually steady
+    }
+
+    // Update and draw each platform
+    for (let i = 0; i < platformArray.length; i++) {
         let currentPlatform = platformArray[i];
-        if (velocityY < 0 && player.y < boardHeight*3/4) {
-            currentPlatform.y -= initialVelocityY //Slide platforms down
+        currentPlatform.y += scrollSpeed; // apply scrolling to platforms
+
+        // Only check collisions when falling
+        if (velocityY > 0 && detectCollisions(player, currentPlatform)) {
+            player.y = currentPlatform.y - player.height;
+            velocityY = initialVelocityY; // bounce up
         }
 
-        if (detectCollisions(player, currentPlatform)) {
-            velocityY = initialVelocityY //jump
-        }
-       
         context.drawImage(currentPlatform.img, currentPlatform.x, currentPlatform.y,
             currentPlatform.width, currentPlatform.height);
     }
