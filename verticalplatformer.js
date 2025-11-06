@@ -7,6 +7,7 @@ let keys = {}; // This is used to track which keys are being pressed
 
 // Sounds
 const debugSound = new Audio("./sounds/debug.wav");
+const restartSound = new Audio("./sounds/restart.mp3");
 
 // VERY IMPORTANT TIME VARIABLE
 let last = performance.now();
@@ -169,8 +170,27 @@ function movePlayer(e) {
         velocityX = -6;
     }
 
-    // play sound when spacebar pressed for testing purposes
-    if (e.code === "Space") {
+    
+    if (e.code == "Space" && gameOver) { // Reset the game
+
+        restartSound.play(); // Play the Restart Sound
+
+        player = {
+            img : playerRightImg,
+            x : playerX,
+            y : playerY,
+            width : playerWidth,
+            height : playerHeight
+        }
+
+        velocityX = 0;
+        velocityY = initialVelocityY;
+        score = 0;
+        maxScore = 0;
+        gameOver = false;
+        placePlatforms();
+
+    } else if (e.code == "Space") { // play sound when spacebar pressed for testing purposes
         debugSound.currentTime = 0; // rewind to start if held repeatedly
         debugSound.play();
     }
