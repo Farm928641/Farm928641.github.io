@@ -25,7 +25,7 @@ function shoot(player) {
 
 
 // Update
-function updateProjectiles(context, scrollSpeed) {
+function updateBullets(context, scrollSpeed) {
     for (let i = bulletArray.length - 1; i >= 0; i--) { // for each bullet in bullets
         const currentBullet = bulletArray[i];
 
@@ -50,7 +50,8 @@ function handleBulletCollisions() {
 
         for (let j = enemyArray.length - 1; j >= 0; j--) { // For each enemy in enemies
             const currentEnemy = enemyArray[j];
-            if (detectCollisions(p, e)) { // Checks the collision between the bullet and the enemy
+            if (detectCollisions(currentBullet, currentEnemy)) { // Checks the collision between the bullet and the enemy
+                enemySound.play();
                 // Remove both bullet and enemy
                 bulletArray.splice(i, 1);
                 enemyArray.splice(j, 1);

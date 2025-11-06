@@ -154,6 +154,10 @@ function update() {
     // also update the enemies too, i guess
     updateEnemies(context, player, scrollSpeed);
 
+    // Upadte bullets
+    updateBullets(context, scrollSpeed);
+    handleBulletCollisions();
+
     // UI Display
     updateScore();
     context.fillStyle = "white";
@@ -196,8 +200,10 @@ function movePlayer(e) {
         gameOver = false;
         placePlatforms();
         resetEnemies(); // kill
+        resetBullets()
 
     } else if (e.code == "Space") { // play sound when spacebar pressed for testing purposes
+        shoot(player); // Shoot a bullet
         debugSound.currentTime = 0; // rewind to start if held repeatedly
         debugSound.play();
     }
