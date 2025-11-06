@@ -72,9 +72,10 @@ let platformWidth = 60;
 let platformHeight = 18;
 let platformImg;
 
-
+// Data and Stuff
 let score = 0;
 let maxScore = 0;
+let gameOver = false; // Will occur when player dies
 
 
 // -------- Functions -----------
@@ -85,6 +86,11 @@ function update() {
     last = now;
 
     requestAnimationFrame(update);
+
+    if (gameOver) {
+        return; // Stops canvas from drawing if game over
+    }
+
     context.clearRect(0, 0, board.width, board.height); // Clears the canvas before drawing next frame
 
 
@@ -100,7 +106,9 @@ function update() {
     player.y += velocityY * delta; // Adds the current Y-Velocity to the player's Y coordinates
     velocityY += gravity * delta; // Adding the gravity factor stops him from flying away
 
-
+    if (player.y > board.height) { // if the palyer falls off the screen
+        gameOver = true;
+    }
 
     // Determine if we need to scroll the world (player moving up)
     let scrollSpeed = 0;
@@ -139,11 +147,15 @@ function update() {
         newPlatform();
     }
 
-    // Score
+    // UI Display
     updateScore();
     context.fillStyle = "white";
     context.font = "16px sans-serif";
     context.fillText(score, 5, 20);
+
+    if (gameOver) {
+        context.fillText("Game Over: Press 'Space' to Restart", boardWidth / 7, boardHeight * 7/8)
+    }
 }
 
 // Player Movement Logic
