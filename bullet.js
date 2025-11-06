@@ -1,0 +1,2 @@
+// bullet.js
+// Handles bullets
