@@ -151,10 +151,10 @@ function movePlayer(e) {
     keys[e.code] = true; // marks that this key was pressed
 
     if (keys["KeyD"] || keys["ArrowRight"]) { // If Player presses right buttons
-        velocityX = 8; // Note: this is 4 pixels per FRAME
+        velocityX = 6; // Note: this is 4 pixels per FRAME
     }
     else if (keys["KeyA"] || keys["ArrowLeft"]) { // If Player presses left buttons
-        velocityX = -8;
+        velocityX = -6;
     }
 
     // play sound when spacebar pressed for testing purposes
@@ -170,9 +170,9 @@ function stopPlayer(e) {
 
     // check if the opposite movement key is still pressed
     if (keys["KeyD"] || keys["ArrowRight"]) {
-        velocityX = 8;
+        velocityX = 6;
     } else if (keys["KeyA"] || keys["ArrowLeft"]) {
-        velocityX = -8;
+        velocityX = -6;
     } else {
         velocityX = 0; // only stop if neither is pressed
     }
