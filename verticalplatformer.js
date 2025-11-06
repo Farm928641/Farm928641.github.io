@@ -34,6 +34,9 @@ window.onload = function() {
     platformImg = new Image();
     platformImg.src = "./images/debug_platform.png"; //uses the debug image for the platform
 
+    // Draw Enemies
+    loadEnemyImage();
+
     // Draw Platforms
     placePlatforms();
 
@@ -148,6 +151,9 @@ function update() {
         newPlatform();
     }
 
+    // also update the enemies too, i guess
+    updateEnemies(context, player, scrollSpeed);
+
     // UI Display
     updateScore();
     context.fillStyle = "white";
@@ -189,6 +195,7 @@ function movePlayer(e) {
         maxScore = 0;
         gameOver = false;
         placePlatforms();
+        resetEnemies(); // kill
 
     } else if (e.code == "Space") { // play sound when spacebar pressed for testing purposes
         debugSound.currentTime = 0; // rewind to start if held repeatedly
@@ -252,6 +259,7 @@ function newPlatform() {
     }
 
     platformArray.push(platform);
+    maybeSpawnEnemy(platform); // Quite possibly adds an enemy to the platform 
 }
 
 
