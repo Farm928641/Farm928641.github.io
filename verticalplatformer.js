@@ -126,6 +126,16 @@ function update() {
         let currentPlatform = platformArray[i];
         currentPlatform.y += scrollSpeed; // apply scrolling to platforms
 
+
+        // Move if platform is flagged as moving
+        if (currentPlatform.isMoving) {
+            currentPlatform.x += currentPlatform.speed * currentPlatform.direction * delta; // Moves it at the speed in the right direction
+            if (currentPlatform.x <= 0 || currentPlatform.x + currentPlatform.width >= boardWidth) { // Changes direction when it hits the edge
+                currentPlatform.direction *= -1;
+            }
+        }
+
+
         // Only check collisions when falling directly onto a platform - this is different than check collisions
         if (
             velocityY > 0 &&
@@ -224,7 +234,9 @@ function stopPlayer(e) {
 }
 
 
-// Platforms
+// -------- Platforms ---------
+
+// The first 6 or 7 platforms
 function placePlatforms() {
     platformArray = []; // A list of our platforms
 
@@ -254,6 +266,8 @@ function placePlatforms() {
     }
 }
 
+
+// Every platform that arent the starting ones
 function newPlatform() {
         let randomX = Math.floor(Math.random() * boardWidth * 3/4); // Creates random x-position
         let platform = {
@@ -261,7 +275,10 @@ function newPlatform() {
         width : platformWidth,
         height : platformHeight,
         x : randomX,
-        y : -platformHeight // Creates the platform at the top of the canvas so it can slide down
+        y : -platformHeight, // Creates the platform at the top of the canvas so it can slide down
+        isMoving : Math.random() < 0.05,           // 5% chance to be moving
+        direction : Math.random() < 0.5 ? 1 : -1,  // start going left or right
+        speed : 1 + Math.random() * 1.5            // small random speed
     }
 
     platformArray.push(platform);
