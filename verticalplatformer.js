@@ -3,6 +3,10 @@ let boardWidth = 360;
 let boardHeight = 576;
 let context;
 
+let inMovingRegion = false;
+const movingStart = 50000; // Score to enter zone
+const movingEnd = 100000; // Score to exit
+
 let keys = {}; // This is used to track which keys are being pressed
 
 // Sounds
@@ -82,7 +86,7 @@ let maxScore = 0;
 let gameOver = false; // Will occur when player dies
 
 
-// -------- Functions -----------
+// ---------------------------------------------------------- Update -----------------------------------------------------
 function update() {
 
     const now = performance.now();
@@ -164,7 +168,7 @@ function update() {
     // also update the enemies too, i guess
     updateEnemies(context, player, scrollSpeed);
 
-    // Upadte bullets
+    // Update bullets
     updateBullets(context, scrollSpeed);
     handleBulletCollisions();
 
@@ -174,11 +178,15 @@ function update() {
     context.font = "16px sans-serif";
     context.fillText(score, 5, 20);
 
+    checkRegionStatus(); // Do we need to switch zones?
+
     if (gameOver) {
         context.fillText("Game Over: Press 'Space' to Restart", boardWidth / 7, boardHeight * 7/8)
     }
 }
 
+
+// -------------------------------------------- Functions ---------------------------------------------
 // Player Movement Logic
 function movePlayer(e) {
     keys[e.code] = true; // marks that this key was pressed
@@ -307,5 +315,24 @@ function updateScore() {
         }
     } else if (velocityY >= 0) { //Stand still or going down
         maxScore -= points;
+    }
+}
+
+
+
+// Checks if we have to switch to a new zone
+function checkRegionStatus() {
+    const boardElement = document.getElementById("board");
+
+    if (score >= movingStart && score < movingEnd) { // if the score is in the Moving Range
+        if (!inMovingRegion) {
+            inMovingRegion = true;
+            boardElement.classList.add("moving-region"); // swap CSS background
+        }
+    } else {
+        if (inMovingRegion) {
+            inMovingRegion = false;
+            boardElement.classList.remove("moving-region"); // revert background to normal
+        }
     }
 }
