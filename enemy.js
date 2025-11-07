@@ -6,6 +6,7 @@ let enemyArray = [];
 let enemyWidth = 48;
 let enemyHeight = 48;
 let enemyImg;
+let movingEnemyImg;
 
 
 const enemySound = new Audio("./sounds/enemy_death.mp3");
@@ -15,6 +16,9 @@ const enemySound = new Audio("./sounds/enemy_death.mp3");
 function loadEnemyImage() {
     enemyImg = new Image();
     enemyImg.src = "./images/gross_thing.png";
+
+    movingEnemyImg = new Image();
+    movingEnemyImg.src = "./images/eyeball.png";
 }
 
 // Quite possibly might spawn an enemy above the given platform
