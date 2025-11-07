@@ -282,7 +282,11 @@ function newPlatform() {
     }
 
     platformArray.push(platform);
-    maybeSpawnEnemy(platform); // Quite possibly adds an enemy to the platform 
+
+    // Only spawn if platfrom isnt moving
+    if (platform.isMoving == false) {
+        maybeSpawnEnemy(platform); // Quite possibly adds an enemy to the platform 
+    }
 }
 
 
