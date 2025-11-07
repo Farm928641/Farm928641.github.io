@@ -16,6 +16,7 @@ body {
     height: 800px;
     background-image: url("./images/space.png");
     margin: 30px;
+    transition: background-image 0.5s ease-in-out;
 }
 
 /* When Player is in Moving Zone */
