@@ -277,8 +277,8 @@ function placePlatforms() {
 
 // Every platform that arent the starting ones
 function newPlatform() {
-        let randomX = Math.floor(Math.random() * boardWidth * 3/4); // Creates random x-position
-        let platform = {
+    let randomX = Math.floor(Math.random() * boardWidth * 3/4); // Creates random x-position
+    let platform = {
         img : platformImg,
         width : platformWidth,
         height : platformHeight,
@@ -288,6 +288,12 @@ function newPlatform() {
         direction : Math.random() < 0.5 ? 1 : -1,  // start going left or right
         speed : 1 + Math.random() * 1.5            // small random speed
     }
+
+
+    if (inMovingRegion) { // If in the moving zone
+        platform.isMoving = true;
+    }
+
 
     platformArray.push(platform);
 
