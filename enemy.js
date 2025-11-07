@@ -30,7 +30,11 @@ function maybeSpawnEnemy(platform) {
             width: enemyWidth,
             height: enemyHeight,
             x: platform.x + (platform.width / 2) - (enemyWidth / 2),
-            y: platform.y - enemyHeight - 5 // Slightly above the platform
+            y: platform.y - enemyHeight - 5, // Slightly above the platform
+            // Moving Properties
+            isMoving: Math.random() < 0.1, // 10% chance for a moving enemy
+            direction: Math.random() < 0.5 ? 1 : -1,
+            speed: 1 + Math.random() * 1.5
         };
 
         enemyArray.push(enemy); // Adds to our list of enemies
@@ -45,6 +49,9 @@ function updateEnemies(context, player, scrollSpeed) {
 
 
         // Draw the enemy
+        if (currentEnemy.isMoving) {
+            currentEnemy.img = movingEnemyImg;
+        }
         context.drawImage(currentEnemy.img, currentEnemy.x, currentEnemy.y, currentEnemy.width, currentEnemy.height);
 
         // Check if two rectangles (palyer and enemy) are colliding
