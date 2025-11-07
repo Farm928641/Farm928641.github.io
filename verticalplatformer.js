@@ -5,7 +5,7 @@ let context;
 
 let inMovingRegion = false;
 const movingStart = 50000; // Score to enter zone
-const movingEnd = 100000; // Score to exit
+const movingEnd = 75000; // Score to exit
 
 let keys = {}; // This is used to track which keys are being pressed
 
