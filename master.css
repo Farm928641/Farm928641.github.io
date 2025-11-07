@@ -18,6 +18,11 @@ body {
     margin: 30px;
 }
 
+/* When Player is in Moving Zone */
+#board.moving-region {
+    background-image: url("./images/moving.png");
+}
+
 #background {
     background-image: url("./images/Spaceman_Background.png");
     height: 100vh;
