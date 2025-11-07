@@ -51,7 +51,11 @@ function handleBulletCollisions() {
         for (let j = enemyArray.length - 1; j >= 0; j--) { // For each enemy in enemies
             const currentEnemy = enemyArray[j];
             if (detectCollisions(currentBullet, currentEnemy)) { // Checks the collision between the bullet and the enemy
-                enemySound.play();
+                if (currentEnemy.isMoving) { // Check if it is moving enemy
+                    movingEnemySound.play();
+                } else {
+                    enemySound.play();
+                }
                 // Remove both bullet and enemy
                 bulletArray.splice(i, 1);
                 enemyArray.splice(j, 1);

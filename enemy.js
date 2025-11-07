@@ -10,6 +10,7 @@ let movingEnemyImg;
 
 
 const enemySound = new Audio("./sounds/enemy_death.mp3");
+const movingEnemySound = new Audio("./sounds/eyedeath.mp3");
 
 
 // Load the enemy image
@@ -60,7 +61,7 @@ function updateEnemies(context, player, scrollSpeed) {
                 currentEnemy.direction *= -1;
             }
 
-            // Use the eyeball image for moving enemies
+            // Use the eyeball image and sound for moving enemies
             currentEnemy.img = movingEnemyImg;
         } else {
             // Use the default image for static enemies
@@ -72,7 +73,11 @@ function updateEnemies(context, player, scrollSpeed) {
 
         // Check if two rectangles (palyer and enemy) are colliding
         if (detectCollisions(player, currentEnemy)) {
-            enemySound.play();
+            if (currentEnemy.isMoving) { // Check if it is moving enemy
+                movingEnemySound.play();
+            } else {
+                enemySound.play();
+            }
             gameOver = true; // Ends game, shocker.
         }
     }
