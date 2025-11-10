@@ -220,7 +220,7 @@ function movePlayer(e) {
         resetEnemies(); // kill
         resetBullets()
 
-    } else if (e.code == "Space") { // play sound when spacebar pressed for testing purposes
+    } else if (e.code == "Space" || e.code == "KeyW") { // play sound when spacebar pressed for testing purposes
         shoot(player); // Shoot a bullet
         debugSound.currentTime = 0; // rewind to start if held repeatedly
         debugSound.play();
