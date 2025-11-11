@@ -155,16 +155,15 @@ function update() {
                 currentPlatform.broken = true;
                 
                 setTimeout(() => {
-                    const index = platformArray.indexOf(currentPlatform);
-                    if (index > -1) {
-                        platformArray.splice(index, 1);
-                    }
+                    currentPlatform.visible = false; // Make invisible after delay
                 }, 150); // Delay ~0.15s so player visibly bounces off first
             }
         }
 
-        context.drawImage(currentPlatform.img, currentPlatform.x, currentPlatform.y,
-            currentPlatform.width, currentPlatform.height);
+        if (currentPlatform.visible) { // Only draw platforms if it is visible
+            context.drawImage(currentPlatform.img, currentPlatform.x, currentPlatform.y,
+                currentPlatform.width, currentPlatform.height);
+        }
     }
 
     // Draw the player (currently glep smiling friends) over and over again
@@ -265,7 +264,8 @@ function placePlatforms() {
         width : platformWidth,
         height : platformHeight,
         x : boardWidth / 2, // Located in the middle of the screen
-        y : boardHeight - 50 
+        y : boardHeight - 50,
+        visible : true
     }
 
     platformArray.push(platform); //Adds the starting platform to the array
@@ -277,7 +277,8 @@ function placePlatforms() {
         width : platformWidth,
         height : platformHeight,
         x : randomX,
-        y : boardHeight - 75 * i - 150 // Creates 75 pixels of space between each platform
+        y : boardHeight - 75 * i - 150, // Creates 75 pixels of space between each platform
+        visible : true
     }
 
     platformArray.push(platform);
