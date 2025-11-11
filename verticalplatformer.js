@@ -150,6 +150,17 @@ function update() {
         ) {
             player.y = currentPlatform.y - player.height; // gently align
             velocityY = initialVelocityY; // bounce
+
+            if (currentPlatform.isBreakable && !currentPlatform.broken) { // Destroy the platform if it is breakable and not broken
+                currentPlatform.broken = true;
+                
+                setTimeout(() => {
+                    const index = platformArray.indexOf(currentPlatform);
+                    if (index > -1) {
+                        platformArray.splice(index, 1);
+                    }
+                }, 150); // Delay ~0.15s so player visibly bounces off first
+            }
         }
 
         context.drawImage(currentPlatform.img, currentPlatform.x, currentPlatform.y,
@@ -287,11 +298,12 @@ function newPlatform() {
         isMoving : Math.random() < 0.05,           // 5% chance to be moving
         direction : Math.random() < 0.5 ? 1 : -1,  // start going left or right
         speed : 1 + Math.random() * 1.5,            // small random speed
-        isBreakable : Math.random() < 0.05 // 5% chance to be breakable
+        isBreakable : Math.random() < 0.05, // 5% chance to be breakable
+        broken : false
     }
 
-    if (isMoving == true) { // If is moving
-        isBreakable = false; // Then make it not be breakable
+    if (platform.isMoving == true) { // If is moving
+        platform.isBreakable = false; // Then make it not be breakable
     }
 
     if (inMovingRegion) { // If in the moving zone
