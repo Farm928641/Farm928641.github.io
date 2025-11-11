@@ -242,7 +242,7 @@ function stopPlayer(e) {
 }
 
 
-// -------- Platforms ---------
+// ---------------------- Platforms ------------------------
 
 // The first 6 or 7 platforms
 function placePlatforms() {
@@ -286,9 +286,13 @@ function newPlatform() {
         y : -platformHeight, // Creates the platform at the top of the canvas so it can slide down
         isMoving : Math.random() < 0.05,           // 5% chance to be moving
         direction : Math.random() < 0.5 ? 1 : -1,  // start going left or right
-        speed : 1 + Math.random() * 1.5            // small random speed
+        speed : 1 + Math.random() * 1.5,            // small random speed
+        isBreakable : Math.random() < 0.05 // 5% chance to be breakable
     }
 
+    if (isMoving == true) { // If is moving
+        isBreakable = false; // Then make it not be breakable
+    }
 
     if (inMovingRegion) { // If in the moving zone
         platform.isMoving = true;
