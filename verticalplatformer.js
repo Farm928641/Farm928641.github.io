@@ -299,7 +299,8 @@ function newPlatform() {
         direction : Math.random() < 0.5 ? 1 : -1,  // start going left or right
         speed : 1 + Math.random() * 1.5,            // small random speed
         isBreakable : Math.random() < 0.05, // 5% chance to be breakable
-        broken : false
+        broken : false,
+        visible : true
     }
 
     if (platform.isMoving == true) { // If is moving
