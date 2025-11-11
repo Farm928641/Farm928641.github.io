@@ -147,7 +147,7 @@ function update() {
             player.y + player.height >= currentPlatform.y &&                      // now intersecting top
             player.x + player.width > currentPlatform.x + 5 &&                    // avoid edge bounces
             player.x < currentPlatform.x + currentPlatform.width - 5
-        ) {
+         && currentPlatform.visible) { // Also only check if the platform is visible
             player.y = currentPlatform.y - player.height; // gently align
             velocityY = initialVelocityY; // bounce
 
