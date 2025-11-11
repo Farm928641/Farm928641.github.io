@@ -263,7 +263,7 @@ function placePlatforms() {
         img : platformImg,
         width : platformWidth,
         height : platformHeight,
-        x : boardWidth / 2, // Located in the middle of the screen
+        x : boardWidth / 2 - 30, // Located in the middle of the screen (subtract half of platform length so middle platform is in middle)
         y : boardHeight - 50,
         visible : true
     }
