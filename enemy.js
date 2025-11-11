@@ -10,7 +10,7 @@ let movingEnemyImg;
 
 
 const enemySound = new Audio("./sounds/enemy_death.mp3");
-const movingEnemySound = new Audio("./sounds/eyedeath.mp3");
+// const movingEnemySound = new Audio("./sounds/eyedeath.mp3");
 
 
 // Load the enemy image
@@ -74,7 +74,8 @@ function updateEnemies(context, player, scrollSpeed) {
         // Check if two rectangles (palyer and enemy) are colliding
         if (detectCollisions(player, currentEnemy)) {
             if (currentEnemy.isMoving) { // Check if it is moving enemy
-                movingEnemySound.play();
+                // movingEnemySound.play();
+                enemySound.play();
             } else {
                 enemySound.play();
             }

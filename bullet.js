@@ -52,7 +52,8 @@ function handleBulletCollisions() {
             const currentEnemy = enemyArray[j];
             if (detectCollisions(currentBullet, currentEnemy)) { // Checks the collision between the bullet and the enemy
                 if (currentEnemy.isMoving) { // Check if it is moving enemy
-                    movingEnemySound.play();
+                    // movingEnemySound.play();
+                    enemySound.play();
                 } else {
                     enemySound.play();
                 }
