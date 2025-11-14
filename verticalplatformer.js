@@ -100,6 +100,7 @@ function update() {
     }
 
     context.clearRect(0, 0, board.width, board.height); // Clears the canvas before drawing next frame
+    updateBackground(delta); // Updates the background
 
 
     player.x += velocityX * delta; // Updates the player's position if they are moving
@@ -230,7 +231,9 @@ function movePlayer(e) {
         resetEnemies(); // kill
         resetBullets()
 
-    } else if (e.code == "Space" || e.code == "KeyW") { // play sound when spacebar pressed for testing purposes
+        resetBackground() // Reset the background position
+
+    } else if (e.code == "Space" || e.code == "KeyW") {
         shoot(player); // Shoot a bullet
         debugSound.currentTime = 0; // rewind to start if held repeatedly
         debugSound.play();
