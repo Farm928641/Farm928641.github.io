@@ -33,7 +33,7 @@ function maybeSpawnEnemy(platform) {
             x: platform.x + (platform.width / 2) - (enemyWidth / 2),
             y: platform.y - enemyHeight - 5, // Slightly above the platform
             // Moving Properties
-            isMoving: Math.random() < 0.2, // 20% chance for a moving enemy
+            isMoving: Math.random() < 0.25, // 25% chance for a moving enemy
             direction: Math.random() < 0.5 ? 1 : -1,
             speed: 60 * (1 + Math.random() * 1.5)
         };
