@@ -41,6 +41,9 @@ window.onload = function() {
     // Draw Enemies
     loadEnemyImage();
 
+    // load powerUp images
+    loadPowerImage();
+
     // Draw Platforms
     placePlatforms();
 
@@ -183,6 +186,12 @@ function update() {
     updateBullets(context, scrollSpeed);
     handleBulletCollisions();
 
+
+    // Update the Power-Ups
+    updatePowers(scrollSpeed);
+
+
+
     // UI Display
     updateScore();
     context.fillStyle = "white";
@@ -229,9 +238,10 @@ function movePlayer(e) {
         gameOver = false;
         placePlatforms();
         resetEnemies(); // kill
-        resetBullets()
+        resetBullets();
+        disableBuckshot();
 
-        resetBackground() // Reset the background position
+        resetBackground(); // Reset the background position
 
     } else if (e.code == "Space" || e.code == "KeyW") {
         shoot(player); // Shoot a bullet
@@ -318,8 +328,13 @@ function newPlatform() {
 
     platformArray.push(platform);
 
-    // Only spawn if platfrom isnt moving
-    if (platform.isMoving == false) {
+   
+    // Chance to spawn a powerup on this platform
+    if (Math.random() < 0.01) { // 1% chance to spawn
+        spawnPowerup(platform.x, platform.y - 40); // spawns slightly above the platform
+
+    } else if (platform.isMoving == false) { // Only spawn enemies if platfrom isnt moving AND there is no power
+
         maybeSpawnEnemy(platform); // Quite possibly adds an enemy to the platform 
     }
 }
