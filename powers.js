@@ -8,6 +8,9 @@ let powerHeight = 48;
 let buckshotImg;
 let buckshotActive = false;
 
+
+const buckshotSound = new Audio("./sounds/guncock.mp3");
+
 // Load the power-up image
 function loadPowerImage() {
     buckshotImg = new Image();
@@ -42,6 +45,7 @@ function updatePowers(scrollSpeed) {
         // Check collision between player and power
         if (detectCollisions(player, currentPower)) {
             activateBuckshot();
+            buckshotSound.play(); // play sound when collected
             powerArray.splice(i, 1);
             continue; // This skips to the next iteration of the loop, preventing the game from checking if a powerup that
                       // was already removed went offscreen. It stops the game from breaking.
