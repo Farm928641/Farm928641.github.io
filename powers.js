@@ -27,6 +27,36 @@ function spawnPowerup(x, y) {
 }
 
 
+// ------------------------------------- Update Logic -------------------------------------------
+function updatePowers(scrollSpeed) {
+    for (let i = powerArray.length - 1; i >= 0; i--) { // For each powerup
+        const currentPower = powerArray[i];
+
+        // Scroll downwards with the rest of the world
+        currentPower.y += scrollSpeed;
+
+        // Draw the power
+        context.drawImage(currentPower.img, currentPower.x, currentPower.y, currentPower.width, currentPower.height);
+
+
+        // Check collision between player and power
+        if (detectCollisions(player, currentPower)) {
+            activateBuckshot();
+            powerArray.splice(i, 1);
+            continue; // This skips to the next iteration of the loop, preventing the game from checking if a powerup that
+                      // was already removed went offscreen. It stops the game from breaking.
+        }
+
+        // Delete the power when it goes offscreen
+        if (currentPower.y > boardHeight) {
+            powerArray.splice(i, 1);
+        }
+    }
+}
+
+
+
+
 // Enable Buckshot
 function activateBuckshot() {
     buckshotActive = true;
