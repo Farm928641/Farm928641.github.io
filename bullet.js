@@ -21,7 +21,7 @@ function shoot(player) {
             width: bulletWidth,
             height: bulletHeight,
             color: "red", // Make the bullets red
-            speed: bulletSpeed
+            speed: bulletSpeed - 3 // Slower Bullet
         };
         bulletArray.push(bullet); // Adds bullet to the bullet list
 
@@ -32,7 +32,7 @@ function shoot(player) {
             width: bulletWidth,
             height: bulletHeight,
             color: "red",
-            speed: bulletSpeed
+            speed: bulletSpeed - 3
         };
         bulletArray.push(lullet);
         // Right Bullet
@@ -42,7 +42,7 @@ function shoot(player) {
             width: bulletWidth,
             height: bulletHeight,
             color: "red", 
-            speed: bulletSpeed
+            speed: bulletSpeed - 3
         };
         bulletArray.push(rullet);
 
@@ -74,7 +74,11 @@ function updateBullets(context, scrollSpeed) {
         context.fillRect(currentBullet.x, currentBullet.y, currentBullet.width, currentBullet.height);
 
         // Remove offscreen bullets
-        if (currentBullet.y + currentBullet.height < 0) {
+        if (buckshotActive) {
+            if (currentBullet.y + currentBullet.height < boardHeight / 4) { // Is bullet above the top fourth of the screen?
+                bulletArray.splice(i, 1); // remove it
+            }
+        } else if (currentBullet.y + currentBullet.height < 0) { // Is bullet above the screen?
             bulletArray.splice(i, 1);
         }
     }
