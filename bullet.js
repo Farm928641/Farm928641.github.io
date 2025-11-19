@@ -14,15 +14,37 @@ let bulletColor = "yellow";
 function shoot(player) {
 
     if (buckshotActive) { // If the power is active
+        // Middle Bullet
         const bullet = {
-        x: player.x + player.width / 2 - bulletWidth / 2,
-        y: player.y,
-        width: bulletWidth,
-        height: bulletHeight,
-        color: "red", // Make the bullets red
-        speed: bulletSpeed
-    };
-    bulletArray.push(bullet); // Adds bullet to the bullet list
+            x: player.x + player.width / 2 - bulletWidth / 2,
+            y: player.y,
+            width: bulletWidth,
+            height: bulletHeight,
+            color: "red", // Make the bullets red
+            speed: bulletSpeed
+        };
+        bulletArray.push(bullet); // Adds bullet to the bullet list
+
+        // Left Bullet
+        const lullet = {
+            x: player.x + player.width / 2 - bulletWidth / 2 - 24, // Adding and subtracting changes offset
+            y: player.y,
+            width: bulletWidth,
+            height: bulletHeight,
+            color: "red",
+            speed: bulletSpeed
+        };
+        bulletArray.push(lullet);
+        // Right Bullet
+        const rullet = {
+            x: player.x + player.width / 2 - bulletWidth / 2 + 24,
+            y: player.y,
+            width: bulletWidth,
+            height: bulletHeight,
+            color: "red", 
+            speed: bulletSpeed
+        };
+        bulletArray.push(rullet);
 
     } else { // If Normal
         const bullet = {
