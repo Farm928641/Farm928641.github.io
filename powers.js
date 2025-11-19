@@ -58,8 +58,7 @@ function updatePowers(scrollSpeed) {
     }
 }
 
-
-
+// Helpers
 
 // Enable Buckshot
 function activateBuckshot() {
@@ -69,4 +68,9 @@ function activateBuckshot() {
 // Disable Buckshot
 function disableBuckshot() {
     buckshotActive = false;
+}
+
+// Clears all enemies (use when restarting game)
+function resetPowers() {
+    powerArray = [];
 }
