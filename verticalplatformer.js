@@ -12,6 +12,7 @@ let keys = {}; // This is used to track which keys are being pressed
 // Sounds
 const debugSound = new Audio("./sounds/debug.wav");
 const restartSound = new Audio("./sounds/restart.mp3");
+const breakSound = new Audio("./sounds/crack.mp3");
 
 // VERY IMPORTANT TIME VARIABLE
 let last = performance.now();
@@ -157,6 +158,7 @@ function update() {
 
             if (currentPlatform.isBreakable && !currentPlatform.broken) { // Destroy the platform if it is breakable and not broken
                 currentPlatform.broken = true;
+                breakSound.play(); // Play sound to signify platform broke
                 
                 setTimeout(() => {
                     currentPlatform.visible = false; // Make invisible after delay
