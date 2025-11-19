@@ -74,11 +74,7 @@ function updateBullets(context, scrollSpeed) {
         context.fillRect(currentBullet.x, currentBullet.y, currentBullet.width, currentBullet.height);
 
         // Remove offscreen bullets
-        if (buckshotActive) {
-            if (currentBullet.y + currentBullet.height < boardHeight / 4) { // Is bullet above the top fourth of the screen?
-                bulletArray.splice(i, 1); // remove it
-            }
-        } else if (currentBullet.y + currentBullet.height < 0) { // Is bullet above the screen?
+        if (currentBullet.y + currentBullet.height < 0) { // Is bullet above the screen?
             bulletArray.splice(i, 1);
         }
     }
