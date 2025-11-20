@@ -211,6 +211,7 @@ function update() {
     checkRegionStatus(); // Do we need to switch zones?
 
     if (gameOver) {
+        context.fillStyle = "yellow";
         context.fillText("Game Over: Press 'Space' to Restart", boardWidth / 7, boardHeight * 7/8)
     }
 }
