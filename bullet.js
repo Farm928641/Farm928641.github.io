@@ -48,6 +48,11 @@ function shoot(player) {
 
         buckShots -= 1; // Lower shots left
 
+        // Check if we disable buckshot
+        if (buckShots < 1) {
+            disableBuckshot();
+        }
+
     } else { // If Normal
         const bullet = {
             x: player.x + player.width / 2 - bulletWidth / 2,

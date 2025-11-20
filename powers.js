@@ -59,7 +59,7 @@ function updatePowers(scrollSpeed) {
     }
 }
 
-// Helpers
+// ------------- Helpers ---------------
 
 // Enable Buckshot
 function activateBuckshot() {

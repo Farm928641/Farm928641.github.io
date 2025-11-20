@@ -196,9 +196,17 @@ function update() {
 
     // UI Display
     updateScore();
-    context.fillStyle = "white";
+    context.fillStyle = "yellow";
     context.font = "16px sans-serif";
     context.fillText(score, 5, 20);
+    // Draw ammo display
+    if (buckshotActive) {
+        context.fillStyle = "red";
+        context.fillText("Ammo: " + buckShots, 5, 40);
+    } else {
+        context.fillStyle = "yellow";
+        context.fillText("Ammo: infinite", 5, 40);
+    }
 
     checkRegionStatus(); // Do we need to switch zones?
 
