@@ -7,6 +7,7 @@ let powerWidth = 48;
 let powerHeight = 48;
 let buckshotImg;
 let buckshotActive = false;
+let buckShots = 0; // How many shots with buckshots
 
 
 const buckshotSound = new Audio("./sounds/guncock.mp3");
@@ -63,6 +64,7 @@ function updatePowers(scrollSpeed) {
 // Enable Buckshot
 function activateBuckshot() {
     buckshotActive = true;
+    buckShots = 5;
 }
 
 // Disable Buckshot

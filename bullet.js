@@ -13,7 +13,7 @@ let bulletColor = "yellow";
 // Create a new bullet when player attacks
 function shoot(player) {
 
-    if (buckshotActive) { // If the power is active
+    if (buckshotActive && buckShots > 0) { // If the power is active
         // Middle Bullet
         const bullet = {
             x: player.x + player.width / 2 - bulletWidth / 2,
@@ -45,6 +45,8 @@ function shoot(player) {
             speed: bulletSpeed - 3
         };
         bulletArray.push(rullet);
+
+        buckShots -= 1; // Lower shots left
 
     } else { // If Normal
         const bullet = {
