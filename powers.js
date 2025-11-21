@@ -26,7 +26,8 @@ function spawnPowerup(x, y) {
         y: y,
         width: powerWidth,
         height: powerHeight,
-        img: buckshotImg // We will have to change this to be some random power-up chooser later, for now just use buckshot
+        img: buckshotImg,
+        type: "buckshot" // This is the type of power up
     });
 }
 
@@ -45,11 +46,13 @@ function updatePowers(scrollSpeed) {
 
         // Check collision between player and power
         if (detectCollisions(player, currentPower)) {
-            activateBuckshot();
-            buckshotSound.play(); // play sound when collected
-            powerArray.splice(i, 1);
-            continue; // This skips to the next iteration of the loop, preventing the game from checking if a powerup that
-                      // was already removed went offscreen. It stops the game from breaking.
+            if (currentPower.type == "buckshot") { // if the power is the buckshot
+                activateBuckshot();
+                buckshotSound.play(); // play sound when collected
+                powerArray.splice(i, 1);
+                continue; // This skips to the next iteration of the loop, preventing the game from checking if a powerup that
+                          // was already removed went offscreen. It stops the game from breaking.
+            }
         }
 
         // Delete the power when it goes offscreen
