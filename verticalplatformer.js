@@ -342,7 +342,7 @@ function newPlatform() {
 
    
     // Chance to spawn a powerup on this platform
-    if (Math.random() < 0.04) { // 4% chance to spawn
+    if (Math.random() < 0.04 && platform.isMoving == false) { // 4% chance to spawn on static platforms
         spawnPowerup(platform.x, platform.y - 40); // spawns slightly above the platform
 
     } else if (platform.isMoving == false) { // Only spawn enemies if platfrom isnt moving AND there is no power
