@@ -30,3 +30,22 @@ function drawMenu(context, boardWidth, boardHeight) {
 
     playButton = { x: btnX, y: btnY, w: btnW, h: btnH };
 }
+
+
+
+// Start the game
+function startGame() {
+    gameState = "playing";
+
+    // Reset everything so the game always starts fresh
+    score = 0;
+    maxScore = 0;
+    placePlatforms();
+    resetEnemies();
+    resetBullets();
+    resetPowers();
+    disableBuckshot();
+    resetBackground(); // If we add any new features that can be reset we HAVE to add it here. I think. Best to just play it safe.
+
+    velocityY = initialVelocityY;
+}
