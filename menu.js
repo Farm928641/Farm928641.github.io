@@ -20,7 +20,7 @@ function drawMenu(context, boardWidth, boardHeight) {
     const btnH = 50;
 
     // Button background
-    context.fillStyle = "white";
+    context.fillStyle = "black";
     context.fillRect(btnX, btnY, btnW, btnH);
 
     // Button text
