@@ -96,14 +96,15 @@ function update() {
     const now = performance.now();
     const delta = (now - last) / (1000/60); // normalized to ~60fps
     last = now;
-
-    requestAnimationFrame(update);
-
+    
     // Main Menu
     if (gameState == "menu") {
         drawMenu(context, boardWidth, boardHeight);
+        requestAnimationFrame(update);
         return;
     }
+    requestAnimationFrame(update);
+
 
     if (gameOver) {
         return; // Stops canvas from drawing if game over

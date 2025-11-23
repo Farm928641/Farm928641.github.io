@@ -20,7 +20,7 @@ function drawMenu(context, boardWidth, boardHeight) {
     const btnH = 50;
 
     // Button background
-    context.fillStyle = "black";
+    context.fillStyle = "white";
     context.fillRect(btnX, btnY, btnW, btnH);
 
     // Button text
@@ -30,7 +30,6 @@ function drawMenu(context, boardWidth, boardHeight) {
 
     playButton = { x: btnX, y: btnY, w: btnW, h: btnH };
 }
-
 
 
 // Start the game
@@ -49,3 +48,24 @@ function startGame() {
 
     velocityY = initialVelocityY;
 }
+
+// Mouse click handler
+window.addEventListener("mousedown", function(e) {
+    if (gameState != "menu" || playButton == null) {
+        return;
+    }
+    const rect = board.getBoundingClientRect();
+    const scaleX = board.width / rect.width;
+    const scaleY = board.height / rect.height; // because of stupid scaling issues i do stuff to fix
+
+    const mouseX = (e.clientX - rect.left) * scaleX; 
+    const mouseY = (e.clientY - rect.top) * scaleY; // hate
+
+    // If the mouse is inside the button
+    if (mouseX > playButton.x && mouseX < playButton.x + playButton.w && 
+        mouseY > playButton.y && mouseY < playButton.y + playButton.h) { 
+
+        // Start the game
+        startGame();
+    }
+});
