@@ -99,6 +99,12 @@ function update() {
 
     requestAnimationFrame(update);
 
+    // Main Menu
+    if (gameState == "menu") {
+        drawMenu(context, boardWidth, boardHeight);
+        return;
+    }
+
     if (gameOver) {
         return; // Stops canvas from drawing if game over
     }
