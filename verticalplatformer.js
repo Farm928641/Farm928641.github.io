@@ -104,7 +104,7 @@ function update() {
     }
 
     context.clearRect(0, 0, board.width, board.height); // Clears the canvas before drawing next frame
-    updateBackground(delta); // Updates the background
+    
 
 
     player.x += velocityX * delta; // Updates the player's position if they are moving
@@ -129,6 +129,7 @@ function update() {
         scrollSpeed = -velocityY * delta; // slide the world down based on player’s upward speed
         player.y += scrollSpeed;          // keep player visually steady
     }
+    updateBackground(scrollSpeed); // Updates the background
 
     // Update and draw each platform
     for (let i = 0; i < platformArray.length; i++) {
