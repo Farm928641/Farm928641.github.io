@@ -25,7 +25,7 @@ function shoot(player) {
         };
         bulletArray.push(bullet); // Adds bullet to the bullet list
 
-        // Left Bullet
+        // Left Bullets
         const lullet = {
             x: player.x + player.width / 2 - bulletWidth / 2 - 24, // Adding and subtracting changes offset
             y: player.y,
@@ -35,7 +35,17 @@ function shoot(player) {
             speed: bulletSpeed - 3
         };
         bulletArray.push(lullet);
-        // Right Bullet
+        const luellut = {
+            x: player.x + player.width / 2 - bulletWidth / 2 - 12, // In between far left and middle bullet
+            y: player.y,
+            width: bulletWidth,
+            height: bulletHeight,
+            color: "red",
+            speed: bulletSpeed - 3
+        };
+        bulletArray.push(luellut);
+
+        // Right Bullets
         const rullet = {
             x: player.x + player.width / 2 - bulletWidth / 2 + 24,
             y: player.y,
@@ -45,6 +55,15 @@ function shoot(player) {
             speed: bulletSpeed - 3
         };
         bulletArray.push(rullet);
+        const rellut = {
+            x: player.x + player.width / 2 - bulletWidth / 2 + 12,
+            y: player.y,
+            width: bulletWidth,
+            height: bulletHeight,
+            color: "red", 
+            speed: bulletSpeed - 3
+        };
+        bulletArray.push(rellut);
 
         buckShots -= 1; // Lower shots left
 
