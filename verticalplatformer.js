@@ -262,7 +262,7 @@ function movePlayer(e) {
         placePlatforms();
         resetEnemies(); // kill
         resetBullets();
-        disableBuckshot();
+        disableAllPowers();
         resetPowers();
 
         resetBackground(); // Reset the background position

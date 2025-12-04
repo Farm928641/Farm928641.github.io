@@ -15,6 +15,8 @@ let laserActive = false;
 let laserCharge = 0; // % charge of laser left
 let laserMaxCharge = 100; // Maximum % of charge
 
+const LASER_DRAIN_RATE = 20;     // % per second
+
 
 const buckshotSound = new Audio("./sounds/guncock.mp3");
 
@@ -76,7 +78,7 @@ function updatePowers(scrollSpeed) {
             } else if (currentPower.type == "laser") {
                 activateLaser();
             }
-            
+
             powerArray.splice(i, 1);
                 continue; // This skips to the next iteration of the loop, preventing the game from checking if a powerup that
                           // was already removed went offscreen. It stops the game from breaking.
@@ -87,6 +89,25 @@ function updatePowers(scrollSpeed) {
             powerArray.splice(i, 1);
         }
     }
+}
+
+function updateLaser(delta) { // update the laser
+    if (!laserActive) { // quit if laser isnt active
+        return
+    }
+
+    const seconds = delta / 60; // # of seconds
+
+    const firing = keys["Space"] || keys["KeyW"];
+
+    if (firing) {
+        laserCharge -= LASER_DRAIN_RATE * seconds;
+        if (laserCharge <= 0) {
+            laserCharge = 0;
+            disableLaser();
+        }
+    }
+
 }
 
 // ------------- Helpers ---------------
