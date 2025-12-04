@@ -28,6 +28,8 @@ window.onload = function() {
     //load player images
     playerRightImg = new Image();
     playerRightImg.src = "./images/debug_player.png";
+    playerLeftImg = new Image();
+    playerLeftImg.src = "./images/debug_player_left.png";
     player.img = playerRightImg;
 
     // draw player
@@ -232,9 +234,11 @@ function movePlayer(e) {
 
     if (keys["KeyD"] || keys["ArrowRight"]) { // If Player presses right buttons
         velocityX = 6; // Note: this is 4 pixels per FRAME
+        player.img = playerRightImg;
     }
     else if (keys["KeyA"] || keys["ArrowLeft"]) { // If Player presses left buttons
         velocityX = -6;
+        player.img = playerLeftImg;
     }
 
     
