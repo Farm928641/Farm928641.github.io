@@ -21,7 +21,7 @@ function shoot(player) {
             width: bulletWidth,
             height: bulletHeight,
             color: "red", // Make the bullets red
-            speed: bulletSpeed - 3 // Slower Bullet
+            speed: bulletSpeed - 2 // Slower Bullet
         };
         bulletArray.push(bullet); // Adds bullet to the bullet list
 
@@ -41,7 +41,7 @@ function shoot(player) {
             width: bulletWidth,
             height: bulletHeight,
             color: "red",
-            speed: bulletSpeed - 3
+            speed: bulletSpeed - 2.5
         };
         bulletArray.push(luellut);
 
@@ -61,7 +61,7 @@ function shoot(player) {
             width: bulletWidth,
             height: bulletHeight,
             color: "red", 
-            speed: bulletSpeed - 3
+            speed: bulletSpeed - 2.5
         };
         bulletArray.push(rellut);
 
