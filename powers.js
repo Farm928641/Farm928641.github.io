@@ -15,7 +15,7 @@ let laserActive = false;
 let laserCharge = 0; // % charge of laser left
 let laserMaxCharge = 100; // Maximum % of charge
 
-const LASER_DRAIN_RATE = 20;     // % per second
+const LASER_DRAIN_RATE = 35;     // % per second
 
 
 const buckshotSound = new Audio("./sounds/guncock.mp3");
@@ -32,26 +32,34 @@ function loadPowerImage() {
 // This will be called from the newPlatform() function in verticalplatformer.js
 // so that way we can get the correct x and y values
 function spawnPowerup(x, y) {
-    const powerChance = Math.random();
-    if (powerChance < 0.5) { //  50% its a laser
-        powerArray.push({
-            x: x,
-            y: y,
-            width: powerWidth,
-            height: powerHeight,
-            img: laserImg,
-            type: "laser" // This is the type of power up
-        });
-    } else { // Is Buckshot
-        powerArray.push({
-            x: x,
-            y: y,
-            width: powerWidth,
-            height: powerHeight,
-            img: buckshotImg,
-            type: "buckshot"
-        });
-    }
+    // const powerChance = Math.random();
+    // if (powerChance < 0.5) { //  50% its a laser
+    //     powerArray.push({
+    //         x: x,
+    //         y: y,
+    //         width: powerWidth,
+    //         height: powerHeight,
+    //         img: laserImg,
+    //         type: "laser" // This is the type of power up
+    //     });
+    // } else { // Is Buckshot
+    //     powerArray.push({
+    //         x: x,
+    //         y: y,
+    //         width: powerWidth,
+    //         height: powerHeight,
+    //         img: buckshotImg,
+    //         type: "buckshot"
+    //     });
+    // }
+    powerArray.push({
+        x: x,
+        y: y,
+        width: powerWidth,
+        height: powerHeight,
+        img: buckshotImg,
+        type: "buckshot"
+    });
 }
 
 
@@ -69,7 +77,7 @@ function updatePowers(scrollSpeed) {
 
         // Check collision between player and power
         if (detectCollisions(player, currentPower)) {
-            disableAllPowers
+            disableAllPowers(); // Turn off previous power
 
             if (currentPower.type == "buckshot") { // if the power is the buckshot
                 activateBuckshot();

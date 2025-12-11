@@ -98,6 +98,8 @@ function update() {
     const now = performance.now();
     const delta = (now - last) / (1000/60); // normalized to ~60fps
     last = now;
+
+    updateLaser(delta);
     
     // Main Menu
     if (gameState == "menu") {
@@ -213,6 +215,9 @@ function update() {
     if (buckshotActive) {
         context.fillStyle = "red";
         context.fillText("Ammo: " + buckShots, 5, 40);
+    } else if (laserActive) {
+        context.fillStyle = "lime";
+        context.fillText("Ammo: " + Math.round(laserCharge) + "%", 5, 40); // Only display the integers
     } else {
         context.fillStyle = "yellow";
         context.fillText("Ammo: infinite", 5, 40);
