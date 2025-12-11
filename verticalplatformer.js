@@ -27,9 +27,9 @@ window.onload = function() {
 
     //load player images
     playerRightImg = new Image();
-    playerRightImg.src = "./images/debug_player.png";
+    playerRightImg.src = "./images/klepr.PNG";
     playerLeftImg = new Image();
-    playerLeftImg.src = "./images/debug_player_left.png";
+    playerLeftImg.src = "./images/klepl.png";
     player.img = playerRightImg;
 
     // draw player
