@@ -30,6 +30,10 @@ window.onload = function() {
     playerRightImg.src = "./images/klepr.PNG";
     playerLeftImg = new Image();
     playerLeftImg.src = "./images/klepl.png";
+    playerJumpRightImg = new Image();
+    playerJumpRightImg.src = "./images/klepjr.PNG";
+    playerJumpLeftImg = new Image();
+    playerJumpLeftImg.src = "./images/klepjl.png";
     player.img = playerRightImg;
 
     // draw player
@@ -120,6 +124,21 @@ function update() {
 
 
     player.x += velocityX * delta; // Updates the player's position if they are moving
+
+    // Draws the appropriate player sprite based on direction and velocity
+    if (player.dir == "r") {
+        if (velocityY < 0) {
+            player.img = playerJumpRightImg;
+        } else {
+            player.img = playerRightImg;
+        }
+    } else {
+        if (velocityY < 0) {
+            player.img = playerJumpLeftImg;
+        } else {
+            player.img = playerLeftImg;
+        }
+    }
 
     // This teleports the player to the opposite side when they go off screen
     if (player.x > boardWidth) {
@@ -245,12 +264,6 @@ function movePlayer(e) {
     else if (keys["KeyA"] || keys["ArrowLeft"]) { // If Player presses left buttons
         velocityX = -6;
         player.dir = "l";
-    }
-
-    if (player.dir == "r") {
-        player.img = playerRightImg;
-    } else {
-        player.img = playerLeftImg;
     }
 
     
