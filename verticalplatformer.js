@@ -78,6 +78,7 @@ let player = {
     y : playerY,
     width : playerWidth,
     height : playerHeight,
+    dir : "r"
 }
 
 // Platforms
@@ -239,10 +240,16 @@ function movePlayer(e) {
 
     if (keys["KeyD"] || keys["ArrowRight"]) { // If Player presses right buttons
         velocityX = 6; // Note: this is 4 pixels per FRAME
-        player.img = playerRightImg;
+        player.dir = "r";
     }
     else if (keys["KeyA"] || keys["ArrowLeft"]) { // If Player presses left buttons
         velocityX = -6;
+        player.dir = "l";
+    }
+
+    if (player.dir == "r") {
+        player.img = playerRightImg;
+    } else {
         player.img = playerLeftImg;
     }
 
@@ -256,7 +263,8 @@ function movePlayer(e) {
             x : playerX,
             y : playerY,
             width : playerWidth,
-            height : playerHeight
+            height : playerHeight,
+            dir : "r"
         }
 
         velocityX = 0;
