@@ -14,18 +14,18 @@ body {
 #board {
     width: 550px;
     height: 800px;
-    background-image: url("./images/space.png");
+    background-image: url("../images/space.png");
     margin: 30px;
     transition: background-image 1s ease-in-out;
 }
 
 /* When Player is in Moving Zone */
 #board.moving-region {
-    background-image: url("./images/moving.png");
+    background-image: url("../images/moving.png");
 }
 
 #background {
-    background-image: url("./images/Spaceman_Background.png");
+    background-image: url("../images/Spaceman_Background.png");
     height: 100vh;
     width: 100%;
     background-size: cover;
